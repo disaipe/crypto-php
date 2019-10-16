@@ -97,15 +97,20 @@ class CryptoHelper {
 
     /**
      * Get valid certificates from store
+     * @param search - filter by subject name
      * @param integer $location - https://docs.microsoft.com/ru-ru/windows/win32/seccrypto/capicom-store-location
-	 * @param string $store
+     * @param string $store
      * @return CryptoCertificate[]
      */
-	public function GetCertificates($location = null, $store = null) {
+	public function GetCertificates($search = null, $location = null, $store = null) {
 		$store = $this->getStore($location, $store);
 		$certs = $store->get_Certificates();
 
-		$certs->Find(CERTIFICATE_FIND_TIME_VALID, "", 0);
+		if ($search) {
+			$certs = $certs->Find(CERTIFICATE_FIND_SUBJECT_NAME, $search, 0);
+		} else {
+			$certs = $certs->Find(CERTIFICATE_FIND_TIME_VALID, date('YmdHis'), 0);
+		}
 
 		$certsArr = [];
 
