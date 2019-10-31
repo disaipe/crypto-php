@@ -54,10 +54,11 @@ class CryptoCertificate {
 			'СНИЛС' => 'Snils',
 			'ИНН' => 'Inn',
 			'E' => 'Email',
+			'G' => 'GivenName',
 			'L' => 'City'
 		];
 
-		preg_match_all('/\w+=/u', $dn, $matches);
+		preg_match_all('/\s\w+=/u', $dn, $matches);
 
 		$buf = $dn;
 		$i = 0;
@@ -71,7 +72,7 @@ class CryptoCertificate {
 			$v = preg_replace('/\s*"?(.*?)"?,?\s?$/', '$1', $v);
 			$v = preg_replace('/""/', '"', $v);
 
-			$tag = str_replace('=', '', $cur);
+			$tag = trim(str_replace('=', '', $cur));
 
 			if (array_key_exists($tag, $tags)) {
 				$acc[$tags[$tag]] = $v;
