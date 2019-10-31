@@ -46,15 +46,22 @@ class CryptoCertificate {
 		$tags = [
 			'CN' => 'Name',
 			'S' => 'Region',
+			'ST' => 'Region',
 			'STREET' => 'Address',
 			'O' => 'Company',
 			'OU' => 'PostType',
 			'T' => 'Post',
+			'TITLE' => 'Post',
 			'ОГРН' => 'Ogrn',
+			'OGRN' => 'Ogrn',
 			'СНИЛС' => 'Snils',
+			'SNILS' => 'Snils',
 			'ИНН' => 'Inn',
+			'INN' => 'Inn',
 			'E' => 'Email',
 			'G' => 'GivenName',
+			'GN' => 'GivenName',
+			'SN' => 'SurName',
 			'L' => 'City'
 		];
 
